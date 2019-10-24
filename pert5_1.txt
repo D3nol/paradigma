@@ -1,0 +1,40 @@
+balance=500
+print("    ==================================    ")
+print("    Welcome to this simple ATM machine    ")
+print("    ==================================    ")
+print("    Please select ATM Transactions    ")
+print("""
+[1]     Deposit
+[2]     Withdraw
+[3]     Balance Inquiry
+[4]     Exit
+
+
+""")
+Option=int(input("What would you like to do? "))
+
+if Option==1:
+    print("Balance  £ ",balance)
+    Deposit=float(input("Enter the amount of money to deposit: "))
+    if Deposit>0:
+        forewardbalance=(balance+Deposit)
+        print("Forewardbalance  £ ",forewardbalance)
+    else:
+        print("None deposit made")
+
+if Option==2:
+    print("Balance  £  ",balance)
+    Withdraw=float(input("Enter amount of money to withdraw: "))
+    if Withdraw>0:
+        forewardbalance=(balance-Withdraw)
+        print("Foreward Balance  £ ",forewardbalance)
+    elif Withdraw>balance:
+        print("No funs in account")
+    else:
+        print("None withdraw made")
+
+if Option==3:
+    print("Balance  £ ",balance)
+
+if Option==4:
+    exit()
