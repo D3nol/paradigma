@@ -1,0 +1,27 @@
+class buku(object):
+    def __init__(self, judul_buku, pengarang, jumlah_halaman):
+        self.judul_buku = judul_buku
+        self.pengarang = pengarang
+        self.jumlah_halaman= jumlah_halaman
+
+    def tampilkan_buku(self):
+        print("Judul Buku :", self.judul_buku)
+        print("Pengarang :", self.pengarang)
+        print("Jumlah Halaman :", self.jumlah_halaman)
+
+
+
+class jenisBuku (buku):
+    def __init__(self, judul_buku, pengarang, jumlah_halaman):
+        buku.__init__(self,judul_buku,pengarang,jumlah_halaman)
+
+    def tampilkan_buku(self):
+        print("Judul Buku :", self.judul_buku)
+        print("Pengarang :", self.pengarang)
+        print("Jumlah Halaman :", self.jumlah_halaman)
+        
+
+jenisBuku1 = jenisBuku("Logika Pemrograman Python", "Abdul kadir",516)
+
+print
+jenisBuku1.tampilkan_buku()
