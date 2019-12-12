@@ -1,0 +1,215 @@
+1. Pure Functions
+
+def multiply_2_pure(numbers):
+    new_numbers = []
+    for n in numbers:
+        new_numbers.append(n * 2)
+    return new_numbers
+
+original_numbers = [1, 3, 5, 10]
+changed_numbers = multiply_2_pure(original_numbers)
+print(original_numbers) 
+print(changed_numbers)  
+
+#output
+[1, 3, 5, 10]
+[2, 6, 10, 20]
+
+#membuat fungsi dengan tidak mengubah apapun keadaan variabel. dengan mendapatkan output yang sama setiap kali menjalankan fungsi dengan input yang sama, contohnya seperti diatas mengan mengalikan angka dengan 2, daftar numbers tidak berubah mereferensikan variabel lain diluar fungsi, jadi itu fungsi murni
+
+
+
+2. Immutability
+
+
+mutable_collection = ['Tim', 10, [4, 5]]
+immutable_collection = ('Tim', 10, [4, 5])
+
+print(mutable_collection[2])    
+print(immutable_collection[2])  
+
+mutable_collection[1] = 15
+
+immutable_collection[1] = 15
+
+#output 
+[4, 5]
+[4, 5]
+Traceback (most recent call last):
+  File "C:/Users/student/Pictures/per10.2.py", line 12, in <module>
+    immutable_collection[1] = 15
+TypeError: 'tuple' object does not support item assignment
+
+#Kesalahan yang akan Anda lihat adalah: TypeError: 'tuple' object does not support item assignment .Sekarang, ada skenario yang menarik di mana Tuple mungkin tampak sebagai objek yang bisa berubah. Misalnya, jika kami ingin mengubah daftar di immutable_collection dari [4, 5] menjadi [4, 5, 6]
+
+immutable_collection[2].append(6) print(immutable_collection[2]) 
+#output 
+[4, 5, 6]
+Traceback (most recent call last):
+TypeError: 'tuple' object does not support item assignment
+
+#ni berfungsi karena List adalah objek yang bisa berubah. Mari kita coba ubah daftar kembali ke [4, 5] .
+immutable_collection[2] = [4, 5]
+# This throws a familiar error: # TypeError: 'tuple' object does not support item assignment
+
+
+3. Higher Order Functions
+
+def write_repeat(message, n):
+    for i in range(n):
+        print(message)
+
+write_repeat('Hello', 5)
+
+#output
+Hello
+Hello
+Hello
+Hello
+Hello
+
+#Higher Order Functions ialah fungsi sebagai argumen atau mengembalikan fungsi untuk diproses lebih lanjut. 
+diatas menuliskan kata 'hello' sebanyak 5 kali hanya dengan menuliskan 1 higher order function.
+
+def hof_write_repeat(message, n, action):
+    for i in range(n):
+        action(message)
+
+hof_write_repeat('Hello', 5, print)
+hof_write_repeat('Hello', 5, logging.error)
+
+#output
+Hello
+Hello
+Hello
+Hello
+Hello
+ERROR:root:Hello
+ERROR:root:Hello
+ERROR:root:Hello
+ERROR:root:Hello
+ERROR:root:Hello
+
+#membuat fungsi yang menambah angka dalam daftar dengan 2, 5, dan 10. Mari kita mulai dengan case
+
+def add2(numbers):
+    new_numbers = []
+    for n in numbers:
+        new_numbers.append(n + 2)
+    return new_numbers
+
+print(add2([23, 88]))
+
+
+
+def hof_add(increment):
+    # Create a function that loops and adds the increment
+    def add_increment(numbers):
+        new_numbers = []
+        for n in numbers:
+            new_numbers.append(n + increment)
+        return new_numbers
+    # We return the function as we do any other value
+    return add_increment
+
+add5 = hof_add(5)
+print(add5([23, 88]))   
+add10 = hof_add(10)
+print(add10([23, 88]))  
+
+#output
+[28, 93]
+[33, 98]
+#fungsi  fungsi add10 dan add10, mengulang daftar dan menambahkan incrementer. Jadi alih-alih membuat banyak fungsi kenaikan yang berbeda, kami membuat 1 Fungsi Pesanan Tinggi
+
+
+
+4.Lambda Expressions
+
+def hof_product(multiplier):
+    return lambda x: x * multiplier
+
+mult6 = hof_product(6)
+print(mult6(6))
+
+#output
+36
+
+#fungsi hof_product yang mengembalikan fungsi yang mengalikan angka dengan nilai yang telah ditentukan.
+
+
+
+5. MAP
+
+
+names = ['Shivani', 'Jason', 'Yusef', 'Sakura']
+greeted_names = map(lambda x: 'Hi ' + x, names)
+
+print(greeted_names)
+
+for name in greeted_names:
+    print(name)
+
+#output
+<map object at 0x0000000002F48448>
+Hi Shivani
+Hi Jason
+Hi Yusef
+Hi Sakura
+#Fungsi map memungkinkan kita untuk menerapkan fungsi ke setiap elemen dalam objek yang dapat diubah
+
+
+6.Filter 
+
+
+numbers = [13, 4, 18, 35]
+div_by_5 = filter(lambda num: num % 5 == 0, numbers)
+
+print(list(div_by_5))
+
+#output
+[35]
+#fungsi filter menguji setiap elemen dalam objek yang dapat diulang dengan fungsi yang mengembalikan True atau False , hanya menjaga yang mengevaluasi ke True
+
+7.Combining map and filter
+
+arbitrary_numbers = map(lambda num: num ** 3, filter(lambda num: num % 3 == 0, range(1, 21)))
+
+print(list(arbitrary_numbers))
+
+#output
+[27, 216, 729, 1728, 3375, 5832]
+#Menggabungkan map dan filter,Karena setiap fungsi mengembalikan iterator, dan keduanya menerima objek yang dapat diubah, kita dapat menggunakannya bersama untuk beberapa manipulasi data
+
+Ekspresi dalam arbitrary_numbers dapat dipecah menjadi 3 bagian:
+range(1, 21) adalah objek iterable yang mewakili angka dari 1, 2, 3, 4 ... 19, 20.
+filter(lambda num: num % 3 == 0, range(1, 21)) adalah sebuah iterator untuk urutan nomor 3, 6, 9, 12, 15 dan 18.
+Ketika mereka dipotong dadu oleh ekspresi map kita bisa mendapatkan iterator untuk urutan nomor 27, 216, 729, 1728, 3375 dan 5832.
+
+8.List Comprehensions
+
+names = ['Shivani', 'Jan', 'Yusef', 'Sakura']
+# Instead of: map(lambda x: 'Hi ' + x, names), we can do
+greeted_names = ['Hi ' + name for name in names]
+
+print(greeted_names) 
+
+#output
+['Hi Shivani', 'Hi Jan', 'Hi Yusef', 'Hi Sakura']
+
+#Pemahaman daftar dasar mengikuti format ini: [hasil for elemen-tunggal in nama-daftar]
+
+
+numbers = [13, 4, 18, 35]
+
+div_by_5 = [num for num in numbers if num % 5 == 0]
+
+print(div_by_5) # [35]
+
+arbitrary_numbers = [num ** 3 for num in range(1, 21) if num % 3 == 0]
+print(arbitrary_numbers)
+
+#output
+['Hi Shivani', 'Hi Jan', 'Hi Yusef', 'Hi Sakura']
+[35]
+[27, 216, 729, 1728, 3375, 5832]
