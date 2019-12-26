@@ -1,7 +1,7 @@
-..*KRISTIAN SENTOSA (173210001)
-..*DENI HERDIANA (173210002)
-..*MARFIANA AYU IRAWATI (173210004)
-..*RISA KURNIAWATI (173210008)
+1. KRISTIAN SENTOSA (173210001)
+2. DENI HERDIANA (173210002)
+3. MARFIANA AYU IRAWATI (173210004)
+4. RISA KURNIAWATI (173210008)
 
 
 Imperative programming adalah paradigma programming yang mendeskripsikan komputasi dalam terminologi pernayataan yang merubah program state (keadaan). 
