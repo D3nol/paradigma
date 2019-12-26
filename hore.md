@@ -1,3 +1,8 @@
+KRISTIAN SENTOSA (173210001)
+DENI HERDIANA (173210002)
+MARFIANA AYU IRAWATI (173210004)
+RISA KURNIAWATI (173210008)
+
 
 Imperative programming adalah paradigma programming yang mendeskripsikan komputasi dalam terminologi pernayataan yang merubah program state (keadaan). 
 Dengan kata lain imperative mood dalam bahasa biasa mengekspresikan perintah untuk melakukan aksi, imperative programs mendefinisikan urutan dari perintah untuk komputer agar bisa dieksekusi.
